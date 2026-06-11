@@ -1,0 +1,44 @@
+<!--history.wxml-->
+<view class="page-body">
+  <!-- Search Bar -->
+  <view class="search-bar">
+    <text class="search-icon">🔍</text>
+    <input class="search-input" value="{{searchQuery}}" placeholder="搜索历史记录..." bindinput="onSearchInput" bindconfirm="onSearch" />
+  </view>
+
+  <!-- Filter Tabs -->
+  <view class="filter-tabs">
+    <view class="filter-tab {{filter === 'all' ? 'tab-active' : ''}}" bindtap="onFilter" data-filter="all">全部</view>
+    <view class="filter-tab {{filter === 'chat' ? 'tab-active' : ''}}" bindtap="onFilter" data-filter="chat">对话</view>
+    <view class="filter-tab {{filter === 'polish' ? 'tab-active' : ''}}" bindtap="onFilter" data-filter="polish">润色</view>
+  </view>
+
+  <!-- History List -->
+  <view class="history-list" wx:if="{{history.length > 0}}">
+    <view class="history-item" wx:for="{{history}}" wx:key="id" bindtap="onTapItem" data-item="{{item}}">
+      <view class="item-icon" style="background: {{item.type === 'chat' ? 'rgba(224,161,70,0.1)' : 'rgba(61,90,66,0.1)'}}">
+        <text>{{item.type === 'chat' ? '💬' : '✨'}}</text>
+      </view>
+      <view class="item-content">
+        <view class="item-header">
+          <view class="item-title">{{item.title}}</view>
+          <view class="item-type" style="color: {{item.type === 'chat' ? '#E0A146' : '#3D5A42'}}">
+            {{item.type === 'chat' ? '对话' : '润色'}}
+          </view>
+        </view>
+        <view class="item-preview">{{item.preview}}</view>
+        <view class="item-meta">
+          <text class="item-date">🕐 {{item.date}}</text>
+          <text class="item-tokens">🔥 {{item.tokens}} tokens</text>
+        </view>
+      </view>
+      <view class="item-delete" catchtap="onDelete" data-id="{{item.id}}">🗑️</view>
+    </view>
+  </view>
+
+  <!-- Empty State -->
+  <view class="empty-state" wx:if="{{history.length === 0}}">
+    <text class="empty-icon">📄</text>
+    <text class="empty-text">暂无相关记录</text>
+  </view>
+</view>

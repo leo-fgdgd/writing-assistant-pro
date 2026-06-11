@@ -1,0 +1,157 @@
+page {
+  background: var(--page-bg);
+}
+
+.page-body {
+  padding: 16px 20px 40px;
+}
+
+.section {
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  padding-left: 4px;
+}
+
+.card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid #F2F2F7;
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.setting-left {
+  flex: 1;
+}
+
+.setting-label {
+  font-size: 15px;
+  color: var(--text-primary);
+  display: block;
+}
+
+.setting-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  display: block;
+}
+
+.setting-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.font-slider {
+  width: 120px;
+}
+
+.font-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  min-width: 28px;
+  text-align: right;
+}
+
+.arrow {
+  font-size: 16px;
+  color: #C7C7CC;
+}
+
+.version-tag {
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: #F2F2F7;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.bottom-space {
+  height: 40px;
+}
+
+/* Modal */
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 1000;
+}
+
+.modal-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 24px 20px 16px;
+  z-index: 1001;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+
+.modal-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.modal-content {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-btn {
+  flex: 1;
+  height: 44px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 44px;
+  text-align: center;
+  border: none;
+  padding: 0;
+}
+
+.modal-btn.cancel {
+  background: #F2F2F7;
+  color: var(--text-primary);
+}
+
+.modal-btn.confirm {
+  background: #E0A146;
+  color: #FFFFFF;
+}

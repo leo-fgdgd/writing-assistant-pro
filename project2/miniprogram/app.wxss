@@ -1,0 +1,35 @@
+page {
+  --page-bg: #F6F5F0;
+  --text-primary: #1C1C1E;
+  --text-secondary: #6E6E73;
+  --brand-primary: #E0A146;
+  --card-bg: #FFFFFF;
+
+  background: var(--page-bg);
+  font-family: -apple-system, 'PingFang SC', 'Noto Sans SC', 'Hiragino Sans GB', sans-serif;
+  color: var(--text-primary);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  padding: 0 20px;
+}
+
+.card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+button {
+  background: initial;
+}
+
+button:focus {
+  outline: 0;
+}
+
+button::after {
+  border: none;
+}

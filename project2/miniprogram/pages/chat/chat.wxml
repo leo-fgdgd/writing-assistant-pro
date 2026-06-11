@@ -1,0 +1,56 @@
+<!--chat.wxml-->
+<scroll-view scroll-y class="chat-body" scroll-into-view="{{scrollToId}}">
+  <!-- Empty State -->
+  <view class="empty-state" wx:if="{{messages.length === 0 && !isTyping}}">
+    <view class="empty-icon">✨</view>
+    <view class="empty-title">语灵 AI 助手</view>
+    <view class="empty-desc">告诉我你想写什么，我来帮你创作</view>
+    <view class="quick-prompts">
+      <view class="quick-prompt" wx:for="{{quickPrompts}}" wx:key="text" bindtap="onTapQuickPrompt" data-text="{{item.text}}">
+        {{item.icon}} {{item.text}}
+      </view>
+    </view>
+  </view>
+
+  <!-- Messages -->
+  <block wx:for="{{messages}}" wx:key="id">
+    <view class="msg-row {{item.role === 'user' ? 'msg-right' : 'msg-left'}}">
+      <view class="msg-avatar" wx:if="{{item.role === 'assistant'}}">✨</view>
+      <view class="msg-bubble {{item.role === 'user' ? 'bubble-user' : 'bubble-ai'}}">
+        <text class="msg-text">{{item.content}}</text>
+        <view class="msg-actions" wx:if="{{item.role === 'assistant'}}">
+          <view class="msg-action" bindtap="onCopy" data-content="{{item.content}}">📋 复制</view>
+          <view class="msg-action" bindtap="onRegenerate">🔄 重新生成</view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!-- Typing Indicator -->
+  <view class="msg-row msg-left" wx:if="{{isTyping}}">
+    <view class="msg-avatar">✨</view>
+    <view class="msg-bubble bubble-ai typing-bubble">
+      <view class="dot"></view>
+      <view class="dot"></view>
+      <view class="dot"></view>
+    </view>
+  </view>
+
+  <view id="msg-end"></view>
+</scroll-view>
+
+<!-- Input Area -->
+<view class="input-area">
+  <textarea
+    class="chat-input"
+    value="{{inputValue}}"
+    placeholder="输入你的写作需求..."
+    bindinput="onInput"
+    bindconfirm="onSend"
+    auto-height
+    maxlength="-1"
+  />
+  <view class="send-btn {{inputValue ? 'send-active' : ''}}" bindtap="onSend">
+    <text class="send-icon">↑</text>
+  </view>
+</view>
