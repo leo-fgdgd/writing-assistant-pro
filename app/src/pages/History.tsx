@@ -31,7 +31,7 @@ export default function History({ showToast }: HistoryProps) {
   const [filter, setFilter] = useState<'all' | 'chat' | 'polish'>('all')
   const [loading, setLoading] = useState(true)
 
-  const loadHistory = async (search?: string, f?: string) => {
+  const loadHistory = async (search?: string, f?: 'all' | 'chat' | 'polish') => {
     setLoading(true)
     try {
       const data = await getHistory({ search, filter: f || filter })

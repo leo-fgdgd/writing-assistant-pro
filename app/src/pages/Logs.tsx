@@ -45,14 +45,13 @@ export default function LogsPage({ showToast }: LogsPageProps) {
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
   const [filterAction, setFilterAction] = useState('')
-  const [filterPage, setFilterPage] = useState('')
+
 
   const fetchLogs = useCallback(async () => {
     setLoading(true)
     try {
       const params = new URLSearchParams()
       if (filterAction) params.set('action', filterAction)
-      if (filterPage) params.set('page', filterPage)
       params.set('page', String(page))
       params.set('limit', '30')
 
@@ -65,7 +64,7 @@ export default function LogsPage({ showToast }: LogsPageProps) {
     } finally {
       setLoading(false)
     }
-  }, [page, filterAction, filterPage]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [page, filterAction]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchStats = useCallback(async () => {
     try {
@@ -188,7 +187,7 @@ export default function LogsPage({ showToast }: LogsPageProps) {
                   <span>{new Date(log.timestamp).toLocaleString('zh-CN')}</span>
                   <span>用户: {log.userId}</span>
                   {log.device?.platform && <span>{log.device.platform}</span>}
-                  {log.extra?.label && <span>操作: {String(log.extra.label)}</span>}
+                  {log.extra?.label != null && <span>操作: {String(log.extra.label)}</span>}
                 </div>
               </div>
             ))

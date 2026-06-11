@@ -5,7 +5,7 @@ import {
 } from 'lucide-react'
 import NavBar from '../components/NavBar'
 import { getSettings, updateSettings } from '../lib/api'
-import type { SystemSettings } from '../types/api'
+import type { SystemSettings } from '../lib/api'
 
 interface SettingsPageProps {
   showToast: (message: string) => void
