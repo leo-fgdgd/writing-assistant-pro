@@ -1,0 +1,59 @@
+<!--favorites.wxml-->
+<scroll-view scroll-y class="page-body">
+
+  <!-- 收藏列表 -->
+  <view class="fav-list" wx:if="{{!isEmpty}}">
+    <view class="fav-item" wx:for="{{favorites}}" wx:key="id" bindtap="onTapFavorite" data-id="{{item.id}}">
+      <view class="fav-left">
+        <text class="fav-type">{{item.type === 'polish' ? '✨' : '💬'}}</text>
+        <view class="fav-info">
+          <text class="fav-title">{{item.title}}</text>
+          <text class="fav-preview">{{item.preview}}</text>
+          <text class="fav-time">{{item.displayTime}}</text>
+        </view>
+      </view>
+      <view class="fav-delete" catchtap="onUnfavorite" data-id="{{item.id}}">🗑️</view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:else>
+    <text class="empty-icon">⭐</text>
+    <text class="empty-title">还没有收藏</text>
+    <text class="empty-desc">在 AI 回复中点击收藏按钮，保存你喜欢的创作内容</text>
+  </view>
+</scroll-view>
+
+<!-- 收藏详情弹窗 -->
+<view class="modal-mask" wx:if="{{showDetail}}" catchtap="onCloseDetail"></view>
+<view class="detail-modal" wx:if="{{showDetail}}" catchtap="noop">
+  <view class="detail-header">
+    <text class="detail-title">收藏详情</text>
+    <view class="detail-close" bindtap="onCloseDetail">
+      <image src="/images/icons/close.png" class="close-icon" />
+    </view>
+  </view>
+
+  <scroll-view scroll-y class="detail-body">
+    <view class="detail-section">
+      <text class="detail-label">💬 我的提问</text>
+      <view class="detail-card user-card-bg">
+        <text class="detail-text">{{detailItem.userMessage}}</text>
+      </view>
+    </view>
+
+    <view class="detail-section">
+      <text class="detail-label">✨ AI 回复</text>
+      <view class="detail-card ai-card-bg">
+        <text class="detail-text">{{detailItem.aiResponse}}</text>
+      </view>
+    </view>
+
+    <view class="detail-time">{{detailItem.type === 'polish' ? '润色' : '对话'}} · {{detailItem.displayTime}}</view>
+  </scroll-view>
+
+  <view class="detail-footer">
+    <button class="footer-btn copy" bindtap="onCopyContent" data-content="{{detailItem.aiResponse}}">📋 复制</button>
+    <button class="footer-btn unfav" bindtap="onUnfavorite" data-id="{{detailItem.id}}">🗑️ 取消收藏</button>
+  </view>
+</view>

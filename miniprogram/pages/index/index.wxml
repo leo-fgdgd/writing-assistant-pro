@@ -1,0 +1,77 @@
+<!--index.wxml — 语灵 AI 工作台-->
+<view class="container">
+  <!-- 问候区 -->
+  <view class="greeting-section">
+    <view class="greeting-text">{{greeting}}，创作者</view>
+    <view class="greeting-sub">今天想写点什么？</view>
+  </view>
+
+  <!-- 统计卡片 -->
+  <view class="stats-row">
+    <view class="stat-card">
+      <view class="stat-num">{{stats.totalCreations || 0}}</view>
+      <view class="stat-label">创作次数</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-num">{{stats.streakDays || 0}}</view>
+      <view class="stat-label">连续天数</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-num">{{formattedTokens}}</view>
+      <view class="stat-label">累计词元</view>
+    </view>
+  </view>
+
+  <!-- 每日 Token 预算 -->
+  <view class="budget-card">
+    <view class="budget-header">
+      <text class="budget-title">今日免费额度</text>
+      <text class="budget-text">{{dailyBudget.used}} / {{dailyBudget.limit}} tokens</text>
+    </view>
+    <view class="budget-bar">
+      <view class="budget-fill {{dailyBudget.percent > 80 ? 'warn' : ''}}" style="width: {{dailyBudget.percent > 100 ? 100 : dailyBudget.percent}}%"></view>
+    </view>
+    <view class="budget-footer" wx:if="{{dailyBudget.percent > 80}}">
+      <text class="budget-warn-text">⚠️ 额度即将用完（明日 0 点重置）</text>
+    </view>
+  </view>
+
+  <!-- 快捷操作 -->
+  <view class="section">
+    <view class="section-title">快捷操作</view>
+    <view class="quick-actions">
+      <view class="action-card" wx:for="{{quickActions}}" wx:key="title" bindtap="onTapAction" data-url="{{item.url}}">
+        <view class="action-icon">{{item.icon}}</view>
+        <view class="action-title">{{item.title}}</view>
+        <view class="action-desc">{{item.desc}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 写作场景 -->
+  <view class="section">
+    <view class="section-title">选择场景开始创作</view>
+    <view class="scene-list">
+      <view class="scene-card" wx:for="{{sceneCards}}" wx:key="id" bindtap="onTapScene" data-id="{{item.id}}">
+        <view class="scene-icon">{{item.icon}}</view>
+        <view class="scene-info">
+          <view class="scene-title">{{item.title}}</view>
+          <view class="scene-desc">{{item.desc}}</view>
+        </view>
+        <view class="scene-arrow">→</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 最近记录 -->
+  <view class="section" wx:if="{{recentItems.length > 0}}">
+    <view class="section-title">最近创作</view>
+    <view class="recent-list">
+      <view class="recent-item" wx:for="{{recentItems}}" wx:key="id" bindtap="onTapHistoryItem" data-item="{{item}}">
+        <view class="recent-title">{{item.title || '未命名'}}</view>
+        <view class="recent-preview">{{item.preview || ''}}</view>
+        <view class="recent-date">{{item.date || ''}}</view>
+      </view>
+    </view>
+  </view>
+</view>

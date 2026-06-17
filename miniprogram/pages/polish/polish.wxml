@@ -1,0 +1,62 @@
+<!--polish.wxml-->
+<scroll-view scroll-y class="page-body">
+  <!-- Mode Selection -->
+  <view class="mode-grid">
+    <view class="mode-card {{selectedMode === item.id ? 'mode-active' : ''}}" wx:for="{{modes}}" wx:key="id" bindtap="onSelectMode" data-mode="{{item.id}}">
+      <view class="mode-icon" style="background: {{item.bgColor}}">
+        <text>{{item.icon}}</text>
+      </view>
+      <view class="mode-title">{{item.title}}</view>
+      <view class="mode-desc">{{item.desc}}</view>
+    </view>
+  </view>
+
+  <!-- Input Area -->
+  <view class="input-section">
+    <view class="input-label">输入原文</view>
+    <textarea
+      class="text-input"
+      value="{{inputText}}"
+      placeholder="粘贴或输入需要润色的文字..."
+      bindinput="onInput"
+      auto-height
+      cursor-spacing="{{100}}"
+      adjust-position="{{true}}"
+    />
+  </view>
+
+  <!-- Quick Examples -->
+  <view class="examples" wx:if="{{!inputText}}">
+    <view class="input-label">快速示例</view>
+    <view class="example-chips">
+      <view class="example-chip" wx:for="{{examples}}" wx:key="*this" bindtap="onUseExample" data-text="{{item}}">
+        {{item}}...
+      </view>
+    </view>
+  </view>
+
+  <!-- Save Draft + Polish Button -->
+  <view class="action-row">
+    <view class="draft-btn" wx:if="{{inputText}}" bindtap="onSaveDraft">
+      <text>📝</text>
+    </view>
+    <view class="polish-btn {{isProcessing ? 'btn-disabled' : ''}}" bindtap="onPolish">
+      <text wx:if="{{!isProcessing}}">✨ 开始润色</text>
+      <text wx:else>润色中...</text>
+    </view>
+  </view>
+
+  <!-- Result -->
+  <view class="result-section" wx:if="{{result}}">
+    <view class="result-header">
+      <view class="input-label">润色结果</view>
+      <view class="result-actions">
+        <view class="copy-btn" bindtap="onCopy">📋 复制</view>
+        <view class="copy-btn fav" bindtap="onFavoriteResult">⭐ 收藏</view>
+      </view>
+    </view>
+    <view class="result-card">
+      <text class="result-text">{{result}}</text>
+    </view>
+  </view>
+</scroll-view>

@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "openapi": [
+      "wxacode.get"
+    ]
+  },
+  "env": {
+    "AI_API_KEY": "",
+    "AI_PROVIDER": "deepseek",
+    "ADMIN_OPENIDS": ""
+  },
+  "timeout": 60
+}

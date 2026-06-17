@@ -1,0 +1,223 @@
+/**
+ * 文风润色页 — 文字精修工具
+ * 模式选择卡片 × 输入输出双区 × 清晰操作流程
+ */
+
+page {
+  background: var(--color-bg);
+  box-sizing: border-box;
+}
+
+.page-body {
+  padding: var(--space-lg) var(--space-xl);
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+/* ===== 模式选择 — 2×2 网格 ===== */
+.mode-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.mode-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg) var(--space-md);
+  border: 2rpx solid transparent;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.mode-card:active {
+  transform: scale(0.97);
+}
+
+.mode-active {
+  border-color: var(--color-brand);
+  background: #FDF8EE;
+}
+
+.mode-icon {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  margin-bottom: var(--space-sm);
+}
+
+.mode-title {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 4rpx;
+}
+
+.mode-desc {
+  font-size: var(--text-xs);
+  color: var(--color-text-sub);
+  line-height: 1.4;
+}
+
+/* ===== 输入区 ===== */
+.input-section {
+  margin-bottom: var(--space-lg);
+}
+
+.input-label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+  letter-spacing: 1rpx;
+}
+
+.text-input {
+  width: 100%;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  font-size: var(--text-base);
+  line-height: 1.7;
+  box-shadow: var(--shadow-sm);
+  border: 1rpx solid var(--color-border);
+  box-sizing: border-box;
+  min-height: 180rpx;
+}
+
+/* ===== 示例 ===== */
+.examples {
+  margin-bottom: var(--space-lg);
+}
+
+.example-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.example-chip {
+  font-size: var(--text-xs);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  color: var(--color-text-sub);
+  border: 1rpx solid var(--color-border);
+  max-width: 280rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+
+.example-chip:active {
+  background: var(--color-brand-bg);
+  border-color: var(--color-brand);
+}
+
+/* ===== 保存草稿 + 润色按钮行 ===== */
+.action-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.draft-btn {
+  width: 80rpx;
+  height: 96rpx;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  border: 1rpx solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  flex-shrink: 0;
+}
+
+.draft-btn:active { background: var(--color-brand-bg); }
+
+.polish-btn {
+  flex: 1;
+  height: 96rpx;
+  border-radius: var(--radius-full);
+  background: var(--color-dark);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: 2rpx;
+  transition: opacity 0.2s;
+  box-sizing: border-box;
+}
+
+.polish-btn:active {
+  opacity: 0.85;
+}
+
+.btn-disabled {
+  opacity: 0.5;
+}
+
+/* ===== 结果区域 ===== */
+.result-section {
+  margin-top: var(--space-sm);
+  padding-bottom: var(--space-2xl);
+  animation: fadeInUp 0.35s ease;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-sm);
+}
+
+.result-actions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.copy-btn {
+  font-size: var(--text-xs);
+  color: var(--color-text-sub);
+  padding: var(--space-xs) var(--space-lg);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  border: 1rpx solid var(--color-border);
+  transition: all 0.15s;
+}
+
+.copy-btn:active {
+  background: var(--color-brand-bg);
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+.copy-btn.fav:active {
+  color: #E0A146;
+  border-color: #E0A146;
+}
+
+.result-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  border-left: 6rpx solid var(--color-brand);
+  box-shadow: var(--shadow-sm);
+}
+
+.result-text {
+  font-size: var(--text-base);
+  line-height: 1.75;
+  color: var(--color-text);
+  white-space: pre-wrap;
+}

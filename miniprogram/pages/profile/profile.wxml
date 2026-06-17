@@ -1,0 +1,148 @@
+<!--profile.wxml-->
+<scroll-view scroll-y class="page-body">
+  <!-- 用户卡片 -->
+  <view class="user-card" bindtap="onTapEditProfile">
+    <view class="user-card-header">
+      <image
+        class="avatar"
+        src="{{profile.avatar || '/images/avatar.png'}}"
+        mode="aspectFill"
+      />
+      <view class="user-details">
+        <view class="user-name">
+          <text>{{profile.name || '创作者'}}</text>
+          <view class="pro-badge" wx:if="{{profile.isPro}}">
+            <text>👑 Pro</text>
+          </view>
+        </view>
+        <view class="user-id">ID: {{profile.id || '语灵创作者'}}</view>
+      </view>
+      <view class="edit-hint">
+        <text class="edit-icon">✎</text>
+      </view>
+    </view>
+
+    <!-- 统计条 -->
+    <view class="stats-row">
+      <view class="stat-item">
+        <view class="stat-value">{{profile.stats.totalCreations || 0}}</view>
+        <view class="stat-label">创作次数</view>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <view class="stat-value">{{tokenDisplay}}</view>
+        <view class="stat-label">消耗 tokens</view>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <view class="stat-value">{{profile.stats.streakDays || 0}}</view>
+        <view class="stat-label">连续天数</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 成就展示区 -->
+  <view class="achievement-strip" wx:if="{{achievements.length > 0}}">
+    <view class="strip-header">
+      <text class="strip-title">🏆 已解锁成就</text>
+      <text class="strip-count">{{achievements.length}} 个</text>
+    </view>
+    <scroll-view scroll-x class="badge-scroll" show-scrollbar="{{false}}">
+      <view class="badge-list">
+        <view class="badge-item" wx:for="{{achievements}}" wx:key="title">
+          <text class="badge-icon">{{item.icon}}</text>
+          <text class="badge-name">{{item.title}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- Pro Banner -->
+  <view class="pro-banner" bindtap="onTapPro">
+    <view class="pro-banner-left">
+      <view class="pro-banner-title">⚡ Pro 高级灵感引擎</view>
+      <view class="pro-banner-desc">无限创作 · 优先响应 · 高级模型</view>
+    </view>
+    <view class="pro-banner-arrow">›</view>
+  </view>
+
+  <!-- 菜单分组 -->
+  <view class="menu-group" wx:for="{{menuGroups}}" wx:key="title">
+    <view class="menu-group-title">{{item.title}}</view>
+    <view class="menu-list">
+      <view
+        class="menu-item"
+        wx:for="{{item.items}}"
+        wx:key="label"
+        wx:for-item="menu"
+        bindtap="onTapMenu"
+        data-label="{{menu.label}}"
+      >
+        <view class="menu-left">
+          <text class="menu-icon">{{menu.icon}}</text>
+          <text class="menu-label">{{menu.label}}</text>
+        </view>
+        <view class="menu-right">
+          <text class="menu-value" wx:if="{{menu.value}}">{{menu.value}}</text>
+          <text class="menu-arrow">›</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 分享按钮 -->
+  <view class="share-section">
+    <button class="share-btn" open-type="share">
+      <text class="share-icon">📤</text>
+      <text class="share-text">分享给朋友</text>
+    </button>
+  </view>
+
+  <!-- 版本信息 -->
+  <view class="version-info">语灵 AI v2.1.0 · CloudBase 云开发</view>
+</scroll-view>
+
+<!-- ========== 编辑资料弹窗 ========== -->
+<view class="modal-mask" wx:if="{{showEditModal}}" catchtap="onCloseEditModal"></view>
+<view class="edit-modal" wx:if="{{showEditModal}}" catchtap="noop">
+  <view class="modal-header">
+    <text class="modal-title">编辑资料</text>
+    <view class="modal-close" bindtap="onCloseEditModal">
+      <image src="/images/icons/close.png" class="close-icon" />
+    </view>
+  </view>
+
+  <!-- 头像编辑 -->
+  <view class="edit-avatar-area" bindtap="onChooseAvatar">
+    <image
+      class="edit-avatar-img"
+      src="{{editAvatar || '/images/avatar.png'}}"
+      mode="aspectFill"
+    />
+    <view class="edit-avatar-overlay">
+      <text class="camera-icon">📷</text>
+      <text class="edit-avatar-text">点击更换头像</text>
+    </view>
+  </view>
+
+  <!-- 昵称编辑 -->
+  <view class="edit-name-area">
+    <text class="edit-label">昵称</text>
+    <input
+      class="edit-name-input"
+      value="{{editName}}"
+      placeholder="请输入昵称"
+      placeholder-class="edit-placeholder"
+      maxlength="20"
+      bindinput="onNameInput"
+      focus="{{true}}"
+    />
+    <text class="char-count">{{editName.length || 0}}/20</text>
+  </view>
+
+  <!-- 按钮 -->
+  <view class="modal-footer">
+    <button class="modal-btn cancel" bindtap="onCloseEditModal">取消</button>
+    <button class="modal-btn save" bindtap="onSaveProfile">保存</button>
+  </view>
+</view>

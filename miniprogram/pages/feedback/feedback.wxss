@@ -1,0 +1,190 @@
+/**
+ * 帮助反馈页 — 常见问题 × 意见反馈
+ * 清晰标签切换 × 可折叠 FAQ × 精致表单
+ */
+
+page {
+  background: var(--color-bg);
+}
+
+.page-body {
+  padding: 0 var(--space-xl) var(--space-2xl);
+}
+
+/* ===== Tab 切换 ===== */
+.tab-bar {
+  display: flex;
+  background: var(--color-surface);
+  border-radius: var(--radius-full);
+  padding: 4rpx;
+  margin: var(--space-md) 0 var(--space-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: var(--space-sm) 0;
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--color-text-sub);
+  border-radius: var(--radius-full);
+  transition: all 0.2s ease;
+}
+
+.tab-item.active {
+  background: var(--color-dark);
+  color: #FFFFFF;
+}
+
+/* ===== FAQ 列表 ===== */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.faq-item {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.faq-q-text {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text);
+  flex: 1;
+  line-height: 1.5;
+}
+
+.faq-arrow {
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  transition: transform 0.2s ease;
+  margin-left: var(--space-sm);
+  flex-shrink: 0;
+}
+
+.faq-arrow.rotated {
+  transform: rotate(90deg);
+  color: var(--color-brand);
+}
+
+.faq-answer {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1rpx solid var(--color-border);
+  font-size: var(--text-sm);
+  color: var(--color-text-sub);
+  line-height: 1.8;
+  animation: fadeIn 0.25s ease;
+}
+
+/* ===== 反馈表单 ===== */
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.form-intro {
+  font-size: var(--text-sm);
+  color: var(--color-text-sub);
+  line-height: 1.7;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  border-left: 6rpx solid var(--color-brand);
+}
+
+.form-group {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-label {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+}
+
+.required {
+  color: var(--color-danger);
+}
+
+.form-textarea {
+  width: 100%;
+  min-height: 200rpx;
+  font-size: var(--text-base);
+  color: var(--color-text);
+  line-height: 1.7;
+  padding: var(--space-md);
+  background: #F9F7F2;
+  border-radius: var(--radius-md);
+  box-sizing: border-box;
+}
+
+.char-count {
+  text-align: right;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: var(--space-xs);
+}
+
+.form-input {
+  width: 100%;
+  height: 80rpx;
+  font-size: var(--text-base);
+  color: var(--color-text);
+  padding: 0 var(--space-md);
+  background: #F9F7F2;
+  border-radius: var(--radius-md);
+  box-sizing: border-box;
+}
+
+.submit-btn {
+  width: 100%;
+  height: 96rpx;
+  background: var(--color-brand);
+  color: #FFFFFF;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  letter-spacing: 2rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit-btn:active {
+  opacity: 0.85;
+}
+
+.submit-btn.disabled {
+  background: #D0CCC5;
+  color: #FFFFFF;
+}
+
+.form-footer {
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.bottom-space {
+  height: var(--space-2xl);
+}

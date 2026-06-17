@@ -1,0 +1,220 @@
+/**
+ * 语灵 AI — 全局设计系统
+ * Editorial/Refined 美学 — 暖纸色调 × 金色点缀 × 考究排版
+ */
+
+page {
+  /* ===== 色彩体系 ===== */
+  --color-bg:        #F7F4ED;  /* 暖白纸色 */
+  --color-surface:   #FFFFFF;  /* 卡片白 */
+  --color-text:      #1C1C1E;  /* 主文字 */
+  --color-text-sub:  #7B7268;  /* 次文字-暖灰 */
+  --color-text-muted:#B0A89E;  /* 弱文字 */
+  --color-brand:     #E0A146;  /* 品牌金 */
+  --color-brand-dim: rgba(224,161,70,0.12);
+  --color-brand-bg:  rgba(224,161,70,0.06);
+  --color-border:    #EBE7DE;  /* 暖调分割线 */
+  --color-dark:      #1F1F24;  /* 深色底 */
+  --color-danger:    #C45A4A;  /* 警示红 */
+
+  /* ===== 间距节奏 ===== */
+  --space-xs: 8rpx;
+  --space-sm: 12rpx;
+  --space-md: 16rpx;
+  --space-lg: 24rpx;
+  --space-xl: 32rpx;
+  --space-2xl: 40rpx;
+  --space-3xl: 48rpx;
+
+  /* ===== 圆角 ===== */
+  --radius-sm: 8rpx;
+  --radius-md: 12rpx;
+  --radius-lg: 16rpx;
+  --radius-xl: 20rpx;
+  --radius-full: 9999rpx;
+
+  /* ===== 字体层级 ===== */
+  --text-xs: 22rpx;
+  --text-sm: 24rpx;
+  --text-base: 28rpx;
+  --text-lg: 32rpx;
+  --text-xl: 36rpx;
+  --text-2xl: 44rpx;
+  --text-3xl: 56rpx;
+
+  /* ===== 阴影（克制使用） ===== */
+  --shadow-sm: 0 1rpx 4rpx rgba(0,0,0,0.03);
+  --shadow-md: 0 2rpx 12rpx rgba(0,0,0,0.05);
+  --shadow-lg: 0 4rpx 20rpx rgba(0,0,0,0.06);
+
+  /* 应用到页面 */
+  box-sizing: border-box;
+  background: var(--color-bg);
+  font-family: 'PingFang SC', 'Noto Sans SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  color: var(--color-text);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== 全局容器 ===== */
+.container {
+  padding: 0 var(--space-xl);
+  box-sizing: border-box;
+}
+
+/* 确保所有全宽元素不溢出 */
+view, scroll-view, textarea, input, button {
+  box-sizing: border-box;
+}
+
+/* ===== 卡片基类 ===== */
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.card-accent {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border-left: 6rpx solid var(--color-brand);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ===== 分割线 ===== */
+.divider {
+  height: 1rpx;
+  background: var(--color-border);
+  margin: var(--space-md) 0;
+}
+
+/* ===== 按钮重置 ===== */
+button {
+  background: initial;
+  padding: 0;
+  margin: 0;
+  border: none;
+  font-size: inherit;
+  color: inherit;
+  line-height: inherit;
+}
+
+button:focus { outline: 0; }
+button::after { border: none; }
+
+/* ===== 主按钮 ===== */
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 96rpx;
+  background: var(--color-dark);
+  color: #FFFFFF;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  letter-spacing: 2rpx;
+}
+
+.btn-primary:active {
+  opacity: 0.85;
+}
+
+.btn-primary.disabled {
+  background: #D0CCC5;
+  color: #FFFFFF;
+}
+
+/* ===== 次级按钮 ===== */
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 88rpx;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--text-base);
+  font-weight: 500;
+  border-radius: var(--radius-full);
+  border: 2rpx solid var(--color-border);
+}
+
+/* ===== 品牌按钮 ===== */
+.btn-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 96rpx;
+  background: var(--color-brand);
+  color: #FFFFFF;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  border-radius: var(--radius-full);
+}
+
+.btn-brand:active {
+  opacity: 0.85;
+}
+
+/* ===== 标签/徽章 ===== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4rpx 16rpx;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  border-radius: var(--radius-full);
+}
+
+.badge-gold {
+  background: var(--color-brand-dim);
+  color: var(--color-brand);
+}
+
+.badge-dark {
+  background: var(--color-dark);
+  color: #FFFFFF;
+}
+
+/* ===== 输入框基类 ===== */
+.input-base {
+  width: 100%;
+  background: #F9F7F2;
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  box-sizing: border-box;
+}
+
+/* ===== 动画 ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease;
+}
+
+.animate-fade-up {
+  animation: fadeInUp 0.4s ease;
+}

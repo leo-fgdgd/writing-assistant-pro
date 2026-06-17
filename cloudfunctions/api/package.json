@@ -1,0 +1,10 @@
+{
+  "name": "yuling-api",
+  "version": "2.1.0",
+  "description": "语灵 AI 云函数 API — 统一的云端后端",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest",
+    "nodemailer": "^6.9.0"
+  }
+}

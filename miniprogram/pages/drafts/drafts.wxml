@@ -1,0 +1,25 @@
+<!--drafts.wxml-->
+<scroll-view scroll-y class="page-body">
+
+  <!-- 草稿列表 -->
+  <view class="draft-list" wx:if="{{!isEmpty}}">
+    <view class="draft-item" wx:for="{{drafts}}" wx:key="id" bindtap="onTapDraft" data-id="{{item.id}}">
+      <view class="draft-left">
+        <text class="draft-type">{{item.type === 'polish' ? '✨' : '💬'}}</text>
+        <view class="draft-info">
+          <text class="draft-title">{{item.title}}</text>
+          <text class="draft-preview">{{item.preview}}</text>
+          <text class="draft-time">{{item.displayTime}}</text>
+        </view>
+      </view>
+      <view class="draft-delete" catchtap="onDeleteDraft" data-id="{{item.id}}">🗑️</view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:else>
+    <text class="empty-icon">📝</text>
+    <text class="empty-title">还没有草稿</text>
+    <text class="empty-desc">在对话或润色页面输入内容后，可以保存为草稿</text>
+  </view>
+</scroll-view>
