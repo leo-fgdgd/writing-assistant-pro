@@ -150,7 +150,7 @@ cd writing-assistant-pro
 | 字段 | 类型 | 默认值 | 说明 |
 |------|------|--------|------|
 | `mode` | `'cloud'` \| `'http'` | `'cloud'` | 部署模式 |
-| `cloudEnvId` | `string` | `cloud1-d3gviafeg6e004666` | CloudBase 环境 ID |
+| `cloudEnvId` | `string` | `cloud1-xxxxxxxxxxxxxxx` | CloudBase 环境 ID |
 | `httpBaseUrl` | `string` | `http://127.0.0.1:3001` | HTTP 模式后端地址 |
 | `cloudFunctionName` | `string` | `'api'` | 云函数名称 |
 | `requestTimeout` | `number` | `10000` | 普通请求超时（ms） |

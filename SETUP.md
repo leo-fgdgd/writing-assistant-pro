@@ -50,7 +50,7 @@
 | `EMAIL_SECURE` | `true` | 启用 SSL |
 | `EMAIL_USER` | `你的QQ号@qq.com` | 发件邮箱 |
 | `EMAIL_PASS` | `授权码` | QQ 邮箱授权码（非密码） |
-| `EMAIL_TO` | `3233424271@qq.com` | 接收反馈的邮箱 |
+| `EMAIL_TO` | `your-email@qq.com` | 接收反馈的邮箱 |
 
 3. 保存环境变量后重新上传云函数使其生效
 
