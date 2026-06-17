@@ -1,0 +1,86 @@
+<!--feedback.wxml-->
+<scroll-view scroll-y class="page-body">
+  <!-- Tab Bar -->
+  <view class="tab-bar">
+    <view
+      class="tab-item {{activeTab === 'faq' ? 'active' : ''}}"
+      data-tab="faq"
+      bindtap="switchTab"
+    >
+      <text>常见问题</text>
+    </view>
+    <view
+      class="tab-item {{activeTab === 'feedback' ? 'active' : ''}}"
+      data-tab="feedback"
+      bindtap="switchTab"
+    >
+      <text>意见反馈</text>
+    </view>
+  </view>
+
+  <!-- FAQ Section -->
+  <view class="faq-list" wx:if="{{activeTab === 'faq'}}">
+    <view
+      class="faq-item {{item.open ? 'open' : ''}}"
+      wx:for="{{faqs}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="toggleFaq"
+    >
+      <view class="faq-question">
+        <text class="faq-q-text">{{item.q}}</text>
+        <text class="faq-arrow {{item.open ? 'rotated' : ''}}">›</text>
+      </view>
+      <view class="faq-answer" wx:if="{{item.open}}">
+        <text>{{item.a}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Feedback Form -->
+  <view class="feedback-form" wx:if="{{activeTab === 'feedback'}}">
+    <view class="form-intro">
+      您的反馈对我们非常重要！请描述您遇到的问题或期待的功能，我们会尽快处理。
+    </view>
+
+    <view class="form-group">
+      <view class="form-label">反馈内容 <text class="required">*</text></view>
+      <textarea
+        class="form-textarea"
+        placeholder="请详细描述您的问题或建议..."
+        placeholder-style="color:#C7C7CC"
+        value="{{feedbackContent}}"
+        bindinput="onFeedbackInput"
+        maxlength="500"
+        auto-height
+      />
+      <view class="char-count">{{feedbackContent.length}}/500</view>
+    </view>
+
+    <view class="form-group">
+      <view class="form-label">联系方式（选填）</view>
+      <input
+        class="form-input"
+        placeholder="微信号或邮箱，方便我们回复您"
+        placeholder-style="color:#C7C7CC"
+        value="{{feedbackContact}}"
+        bindinput="onContactInput"
+        maxlength="100"
+      />
+    </view>
+
+    <button
+      class="submit-btn {{submitting ? 'disabled' : ''}}"
+      bindtap="onSubmitFeedback"
+      disabled="{{submitting}}"
+    >
+      {{submitting ? '提交中...' : '提交反馈'}}
+    </button>
+
+    <view class="form-footer">
+      您也可以发送邮件至：feedback@yuling-ai.com
+    </view>
+  </view>
+
+  <view class="bottom-space"></view>
+</scroll-view>

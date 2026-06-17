@@ -1,0 +1,65 @@
+<!--profile.wxml-->
+<scroll-view scroll-y class="page-body">
+  <!-- User Card -->
+  <view class="user-card">
+    <view class="user-info">
+      <image class="avatar" src="{{profile.avatar || '/images/avatar.png'}}" mode="aspectFill" />
+      <view class="user-details">
+        <view class="user-name">
+          <text>{{profile.name || '创作者'}}</text>
+          <view class="pro-badge" wx:if="{{profile.isPro}}">
+            <text>👑 Pro</text>
+          </view>
+        </view>
+        <view class="user-id">ID: {{profile.id || '语灵创作者'}}</view>
+      </view>
+    </view>
+
+    <!-- Stats -->
+    <view class="stats-row">
+      <view class="stat-item">
+        <view class="stat-value">{{profile.stats.totalCreations || 0}}</view>
+        <view class="stat-label">创作次数</view>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <view class="stat-value">{{tokenDisplay}}k</view>
+        <view class="stat-label">消耗 tokens</view>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <view class="stat-value">{{profile.stats.streakDays || 0}}</view>
+        <view class="stat-label">连续天数</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Pro Banner -->
+  <view class="pro-banner" bindtap="onTapPro">
+    <view class="pro-banner-left">
+      <view class="pro-banner-title">⚡ Pro 高级灵感引擎</view>
+      <view class="pro-banner-desc">解锁无限创作、优先响应、高级模型</view>
+    </view>
+    <view class="pro-banner-arrow">›</view>
+  </view>
+
+  <!-- Menu Groups -->
+  <view class="menu-group" wx:for="{{menuGroups}}" wx:key="title">
+    <view class="menu-group-title">{{item.title}}</view>
+    <view class="menu-list">
+      <view class="menu-item" wx:for="{{item.items}}" wx:key="label" wx:for-item="menu" bindtap="onTapMenu" data-label="{{menu.label}}">
+        <view class="menu-left">
+          <text class="menu-icon">{{menu.icon}}</text>
+          <text class="menu-label">{{menu.label}}</text>
+        </view>
+        <view class="menu-right">
+          <text class="menu-value" wx:if="{{menu.value}}">{{menu.value}}</text>
+          <text class="menu-arrow">›</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Version -->
+  <view class="version-info">语灵 AI v2.1.0</view>
+</scroll-view>

@@ -1,0 +1,17 @@
+{
+  "name": "writing-assistant-pro",
+  "private": true,
+  "version": "2.1.0",
+  "description": "写作助手 Pro · 语灵 AI — 全栈写作助手平台",
+  "scripts": {
+    "dev": "concurrently -n server,app -c blue,green \"npm run dev:server\" \"npm run dev:app\"",
+    "dev:app": "cd app && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "build": "cd app && npm run build",
+    "install:all": "cd app && npm install && cd ../server && npm install"
+  },
+  "devDependencies": {
+    "@cloudbase/cli": "^3.5.6",
+    "concurrently": "^9.0.0"
+  }
+}
